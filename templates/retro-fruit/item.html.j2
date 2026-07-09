@@ -1,0 +1,29 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Generated with simpleGals {{ version }} | {{ project_url }} -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="generator" content="simpleGals {{ version }}">
+		<title>{{ title }}</title>
+	</head>
+	<body bgcolor="#ffffff" text="#000000">
+		<table background="assets/button_gradient.png" cellpadding=0 cellspacing=0 width="100%" height=29>
+			<tr height=2><td><img width=0 height=0/></td></tr>
+			<tr height=19>
+				<td><img width=10 height=0/></td>
+				<td>{% if prev_image %}<a href="{{ prev_image.item_page }}"><img border="0" src="assets/previous1.png" alt="previous"></a>{% else %}<img border="0" src="assets/previous0.png" alt="previous">{% endif %}</td>
+				<td>{% if next_image %}<a href="{{ next_image.item_page }}"><img border="0" src="assets/next1.png" alt="next"></a>{% else %}<img border="0" src="assets/next0.png" alt="next">{% endif %}</td>
+				<td><img width=10 height=0/></td>
+				<td><a href="index.html"><img border="0" src="assets/home.png"></a></td>
+				<td><img width=10 height=0/></td>
+				<td width="100%"></td>
+			</tr>
+		</table>
+
+		<p><br>
+		<img alt="" src="{{ image.display_path }}"><p>
+		<p>
+		Page: {{ image_number }} of {{ total_images }} ({{ percent }}%)<p>
+	</body>
+</html>
+<!-- Generated with simpleGals {{ version }} | {{ project_url }} -->

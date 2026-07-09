@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Generated with simpleGals {{ version }} | {{ project_url }} -->
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="generator" content="simpleGals {{ version }}">
+		<title>{{ title }}</title>
+	</head>
+	<body bgcolor="#ffffff" text="#000000">
+		<table background="assets/button_gradient.png" cellpadding=0 cellspacing=0 width="100%" height=29>
+			<tr height=2><td><img width=0 height=0/></td></tr>
+			<tr height=19>
+				<td><img width=10 height=0/></td>
+				<td>{% if current_page > 1 %}<a href="{% if current_page == 2 %}index.html{% else %}page-{{ current_page - 1 }}.html{% endif %}"><img border="0" src="assets/previous1.png" alt="previous"></a>{% else %}<img border="0" src="assets/previous0.png" alt="previous">{% endif %}</td>
+				<td>{% if current_page < total_pages %}<a href="page-{{ current_page + 1 }}.html"><img border="0" src="assets/next1.png" alt="next"></a>{% else %}<img border="0" src="assets/next0.png" alt="next">{% endif %}</td>
+				<td><img width=10 height=0/></td>
+				<td><a href="index.html"><img border="0" src="assets/home.png"></a></td>
+				<td><img width=10 height=0/></td>
+				<td width="100%"></td>
+				<td valign="center"><font size=2>{{ total_images }}&nbsp;images</font></td>
+				<td><img width=10 height=0/></td>
+			</tr>
+		</table>
+
+		<p><br>
+
+		<h2 align="center">{{ title }}</h2>
+		<table cellspacing="2" cellpadding="2" width="100%">
+		{% for row in images|batch(columns) %}
+			<tr>
+			{% for image in row %}
+				<td align="center" width="{{ 100 // columns }}%">
+					<table cellspacing=0 cellpadding=0>
+						<tr>
+							<td width=9 height=6 background="assets/top_left.png"></td>
+							<td height=6 background="assets/top_middle.png"></td>
+							<td width=8 height=6 background="assets/top_right.png"></td>
+						</tr>
+						<tr>
+							<td width=9 background="assets/left.png"></td>
+							<td width=240><a href="{{ image.item_page }}"><img border="0" width=240 alt="" src="{{ image.thumb_path }}"></a></td>
+							<td width=8 background="assets/right.png"></td>
+						</tr>
+						<tr>
+							<td width=9 height=13 background="assets/bottom_left.png"></td>
+							<td><table height=13 width="100%" cellspacing=0 cellpadding=0>
+								<tr>
+									<td width=50><img src="assets/bottom_left_2.png"></td>
+									<td width="100%" background="assets/bottom_middle_2.png"></td>
+									<td width=50><img src="assets/bottom_right_2.png"></td>
+								</tr>
+							</table></td>
+							<td width=8 height=13 background="assets/bottom_right.png"></td>
+						</tr>
+					</table>
+					<br>
+				</td>
+			{% endfor %}
+			</tr>
+			<tr><td colspan="{{ columns }}" height=10></td></tr>
+		{% endfor %}
+		</table>
+	</body>
+</html>
+<!-- Generated with simpleGals {{ version }} | {{ project_url }} -->
