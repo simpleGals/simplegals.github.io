@@ -1,0 +1,9 @@
+# derived build output, never committed
+out/
+.meta/
+_site/
+# local tooling
+.venv/
+.superpowers/
+__pycache__/
+*.pyc
