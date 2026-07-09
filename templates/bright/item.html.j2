@@ -1,0 +1,120 @@
+{# simplegals/template/item.html.j2 #}
+<!DOCTYPE html>
+<!-- Generated with simpleGals {{ version }} | {{ project_url }} -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="simpleGals {{ version }}">
+  <title>{{ title }} · {{ image.filename }}</title>
+  {% if social_previews %}
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="{{ title }}">
+  <meta property="og:title" content="{{ title }} · {{ image.filename }}">
+  {% set desc = image.caption or description or title %}
+  <meta property="og:description" content="{{ desc }}">
+  {% if site_url and image.og_path %}
+  <meta property="og:image" content="{{ site_url }}/{{ image.og_path }}">
+  <meta property="og:url" content="{{ site_url }}/{{ image.item_page }}">
+  {% endif %}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ title }} · {{ image.filename }}">
+  <meta name="twitter:description" content="{{ desc }}">
+  {% if site_url and image.og_path %}<meta name="twitter:image" content="{{ site_url }}/{{ image.og_path }}">{% endif %}
+  {% endif %}
+  {% if author %}<meta name="author" content="{{ author }}">{% endif %}
+  <link rel="stylesheet" href="{{ css_path }}">
+</head>
+<body>
+  <div class="item-page">
+    <header>
+      <h1><a href="index.html" style="color:inherit;text-decoration:none;">{{ title }}</a></h1>
+    </header>
+
+    <a href="{{ image.output_path }}">
+      <img src="{{ image.display_path }}" alt="{{ image.alt or image.filename }}">
+    </a>
+
+    <div class="item-meta">
+      <span>{{ image.filename }}</span>
+      <span>{{ image.date }}</span>
+      <span>{{ image.size }}</span>
+      <span><a href="{{ image.output_path }}" download aria-label="Download full-size image">💾</a></span>
+      <span class="share-wrap"><button class="share-btn" id="share-btn" onclick="copyShareUrl()" title="Copy shareable link">🔗</button><span class="share-hint">copy link to clipboard</span></span>
+    </div>
+
+    {% if image.caption %}<p style="margin-bottom:1rem;color:#ccc;">{{ image.caption }}</p>{% endif %}
+
+    <nav class="item-nav">
+      {% if prev_image %}
+        <a href="{{ prev_image.item_page }}">← {{ prev_image.filename }}</a>
+      {% else %}
+        <span></span>
+      {% endif %}
+      {% if next_image %}
+        <a href="{{ next_image.item_page }}">{{ next_image.filename }} →</a>
+      {% endif %}
+    </nav>
+
+    {% if exif_display and image.exif %}
+    <dl class="exif">
+      {% set labels = [('camera','Camera'),('lens','Lens'),('exposure','Exposure'),('focal_length','Focal length'),('flash','Flash'),('exposure_comp','Exp. comp'),('white_balance','White balance'),('metering','Metering')] %}
+      {% for key, label in labels %}{% if image.exif.get(key) %}
+      <div class="exif-field"><dt>{{ label }}</dt><dd>{{ image.exif[key] }}</dd></div>
+      {% endif %}{% endfor %}
+    </dl>
+    {% endif %}
+
+    <footer>
+      {% if copyright %}{{ copyright }}{% endif %}
+      {% if simple_gals_promo %}<p class="generated-by"><a href="{{ project_url }}" target="_blank" rel="noopener noreferrer">Generated with simpleGals {{ version }}</a></p>{% endif %}
+    </footer>
+  </div>
+  <div class="key-legend"><kbd>←</kbd> prev · <kbd>→</kbd> next · <kbd>u</kbd> up</div>
+  <script>
+    const prev = {{ prev_image.item_page | tojson if prev_image else 'null' }};
+    const next = {{ next_image.item_page | tojson if next_image else 'null' }};
+    const thisFile = {{ image.filename | tojson }};
+    const shareUrl = {{ (site_url + '/' + image.item_page) | tojson if site_url else 'null' }};
+
+    function copyShareUrl() {
+      const url = shareUrl || (window.location.origin + window.location.pathname);
+      const btn = document.getElementById('share-btn');
+      function flash() {
+        btn.textContent = '✅';
+        setTimeout(function() { btn.textContent = '🔗'; }, 1500);
+      }
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(flash);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = url;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try { document.execCommand('copy'); } catch(_) {}
+        document.body.removeChild(ta);
+        flash();
+      }
+    }
+    const fromPage = new URLSearchParams(window.location.search).get('from');
+
+    if (fromPage) {
+      document.querySelectorAll('nav.item-nav a').forEach(function(a) {
+        a.href = a.getAttribute('href') + '?from=' + fromPage;
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowLeft' && prev) window.location.href = prev + (fromPage ? '?from=' + fromPage : '');
+      if (e.key === 'ArrowRight' && next) window.location.href = next + (fromPage ? '?from=' + fromPage : '');
+      if (e.key === 'u' || e.key === 'U') {
+        window.location.href = fromPage ? fromPage + '#' + thisFile : 'index.html';
+      }
+    });
+  </script>
+</body>
+</html>
+<!-- Generated with simpleGals {{ version }} | {{ project_url }} -->
