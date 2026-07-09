@@ -1,0 +1,11 @@
+{
+  "title": "Bright",
+  "description": "The same layout inverted to dark-on-light. Airy, clean, gallery-wall bright.",
+  "cover": "img-08.jpg",
+  "author": "simpleGals Showcase",
+  "site_url": "https://simplegals.github.io/bright/",
+  "social_previews": true,
+  "exif_display": true,
+  "template": "../../templates/bright",
+  "layout": { "columns": 4, "rows": 5 }
+}

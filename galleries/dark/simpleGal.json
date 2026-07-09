@@ -1,0 +1,10 @@
+{
+  "title": "Dark",
+  "description": "The default simpleGals look: near-black, quiet, lets the photos glow.",
+  "cover": "img-08.jpg",
+  "author": "simpleGals Showcase",
+  "site_url": "https://simplegals.github.io/dark/",
+  "social_previews": true,
+  "exif_display": true,
+  "layout": { "columns": 4, "rows": 5 }
+}
