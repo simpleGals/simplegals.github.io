@@ -1,0 +1,17 @@
+{
+  "title": "simpleGals Showcase",
+  "tagline": "the same photos, three ways",
+  "pitch": "A tiny static-HTML gallery generator. One photo set below, rendered by three templates: a dark theme, its bright inverse, and a 2010 revival brought back to life.",
+  "chip": "3 templates · same photo set · rebuilt on every release",
+  "hero_gallery": "dark",
+  "galleries": [
+    { "slug": "dark",        "badge": "stock template", "blurb": "The default simpleGals look: near-black, quiet, lets the photos glow." },
+    { "slug": "bright",      "badge": "custom CSS",      "blurb": "The same layout inverted to dark-on-light. Airy, clean, gallery-wall bright." },
+    { "slug": "retro-fruit", "badge": "custom template", "blurb": "A 2010 Apple-style web gallery, rebuilt 1:1 from its original sliced-image chrome." }
+  ],
+  "links": [
+    { "label": "View source on GitHub", "href": "https://github.com/simplegals/simplegals.github.io" },
+    { "label": "simpleGals on PyPI",    "href": "https://pypi.org/project/simplegals/" },
+    { "label": "Fork a template",       "href": "https://github.com/simplegals/simplegals.github.io/tree/main/templates/retro-fruit" }
+  ]
+}
